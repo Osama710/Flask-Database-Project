@@ -27,8 +27,8 @@ This Flask Database Project is built using **Python**. Following are the librari
 The System is developed by Muhammad Osama [(Github)](https://github.com/Osama710) [(LinkedIn)](https://www.linkedin.com/in/osama-yousuf-6a1952177/)
 
 ## Screenshots<br>
-![](./Screenshots/main.png)
-![](./Screenshots/main2.png)
-![](./Screenshots/colunmns.png)
-![](./Screenshots/side.png)
-![](./Screenshots/side2.png)
+![](./Screenshots/main.PNG)
+![](./Screenshots/main2.PNG)
+![](./Screenshots/colunmns.PNG)
+![](./Screenshots/side.PNG)
+![](./Screenshots/side2.PNG)
