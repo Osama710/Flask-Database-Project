@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asset Holdings</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      charset="utf-8"
+    ></script>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static',filename='java/main.js') }}"></script>
+    
+  </head>
+  <body>
+    <div class="bo">
+      <div class="before">
+        <div class="menu-btn">
+          <i class="far fa-arrow-alt-circle-right"></i>
+        </div>
+      </div>
+      <div class="side-bar">
+        <div class="heading">
+          <div class="main-head">
+            <i class="fas fa-globe"></i>
+            <p>Site</p>
+          </div>
+          <div class="close-btn">
+            <i class="far fa-arrow-alt-circle-left"></i>
+          </div>
+        </div>
+        <div class="menu">
+          <div class="item">
+            <a class="sub-btn active"
+              ><i class="far fa-file-alt"></i>Data Entries<i
+                class="fas fa-angle-down dropdown"
+              ></i
+            ></a>
+            <div class="sub-menu">
+              <a href="{{ url_for('holding') }}" class="sub-item active">Holdings</a>
+              <a href="{{ url_for('transactions') }}" class="sub-item">Transactions</a>
+            </div>
+          </div>
+          <div class="item">
+            <a class="sub-btn" href="#"
+              ><i class="fas fa-wrench"></i>Tools<i
+                class="fas fa-angle-down dropdown"
+              ></i
+            ></a>
+            <div class="sub-menu">
+              <a href="{{ url_for('archivedholdings') }}" class="sub-item">Archived Holdings</a>
+              <a href="{{ url_for('archivedtransactions') }}" class="sub-item">Archived Transactions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="main-data">
+          <a class="head-menu sub-btn"
+            >Query Asset Holdings Database<i
+              class="fas fa-angle-down dropdown"
+            ></i
+          ></a>
+          <div class="sub-menu first-table">
+            <div class="first">
+              <form action="" method="POST">
+                <table border="1" id="first-table" class="order-column display nowrap">
+                <thead>
+                  <tr>
+                    <th>Case Name</th>
+                    <th>Inst. Name</th>
+                    <th>Account Name</th>
+                    <th>Date Range</th>
+                    <th>Asset Name</th>
+                    <th>Asset Type</th>
+                    <th>Shares</th>
+                    <th>FMV</th>
+                    <th>CV</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="text" value="All" id="case_name" name="case_name"></input></td>
+                    <td><input type="text" value="All" id="inst_name" name="inst_name"></input></td>
+                    <td><input type="text" value="All" id="account_name" name="account_name"></input></td>
+                    <td><input type="text" value="01/01/2021-31/01/2021" id="date" name="date"></input></td>
+                    <td><input type="text" value="All" id="asset_name" name="asset_name"></input></td>
+                    <td><input type="text" value="All" id="asset_type" name="asset_type"></input></td>
+                    <td><input type="text" value="All" id="shares" name="shares"></input></td>
+                    <td><input type="text" value="All" id="fmv" name="fmv"></input></td>
+                    <td><input type="text" value="All" id="cv" name="cv"></input></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button class="submit-query" type="submit">Submit Query</button>
+              </form>
+            </div>
+            <div class="second">
+              <button class="col-select">...</button>
+              <div class="checkb">
+                <button class="col-select2">...</button><br>
+                <div class="checkboxes">
+                  <input id="messageCheckbox" data-target ="0" type="checkbox" value="Case Name" checked>
+                  <label>Case Name</label><br>
+                  <input id="messageCheckbox" data-target ="1" type="checkbox" value="Inst. Name">
+                  <label>Inst. Name</label><br>
+                  <input id="messageCheckbox" data-target ="2" type="checkbox" value="Account Name" checked>
+                  <label>Account Name</label><br>
+                  <input id="messageCheckbox" data-target ="3" type="checkbox" value="Date" checked>
+                  <label>Date</label><br>
+                  <input id="messageCheckbox" data-target ="4" type="checkbox" value="Asset Name" checked>
+                  <label>Asset Name</label><br>
+                  <input id="messageCheckbox" data-target ="5" type="checkbox" value="Asset Type">
+                  <label>Asset Type</label><br>
+                  <input id="messageCheckbox" data-target ="6" type="checkbox" value="Shares" checked>
+                  <label>Shares</label><br>
+                  <input id="messageCheckbox" data-target ="7" type="checkbox" value="FMV" checked>
+                  <label>FMV</label><br>
+                  <input id="messageCheckbox" data-target ="8" type="checkbox" value="CV">
+                  <label>CV</label><br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 main-data">
+          <a class="head-menu sub-btn"
+            >Asset Holdings Query<i
+              class="fas fa-angle-down dropdown"
+            ></i
+          ></a>
+            <div class="sub-menu first-table">
+              <div class="first">
+                <table border="1" id="second-table" class="order-column display nowrap">
+                <thead>
+                  <tr>
+                    <th>Case Name</th>
+                    <th>Inst. Name</th>
+                    <th>Account Name</th>
+                    <th>Date Range</th>
+                    <th>Asset Name</th>
+                    <th>Asset Type</th>
+                    <th>Shares</th>
+                    <th>FMV</th>
+                    <th>CV</th>
+                    <th>Archive?</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                    {% for data in holding_data %}
+                    <tr>
+                      <td>{{data.case_name}}</td>
+                      <td>{{data.inst_name}}</td>
+                      <td>{{data.account_name}}</td>
+                      <td>{{data.date}}</td>
+                      <td>{{data.asset_name}}</td>
+                      <td>{{data.asset_type}}</td>
+                      <td>{{data.shares}}</td>
+                      <td>{{data.fmv}}</td>
+                      <td>{{data.cv}}</td>
+                      <td onclick="archive(this)"><i class="fa fa-trash-alt" aria-hidden="true"></i></td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td id="add-row"><i class="far fa-plus-square" aria-hidden="true"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="second">
+                <button class="col-select3">...</button>
+                <div class="checkb2">
+                  <button class="col-select4">...</button><br>
+                  <div class="checkboxes1">
+                    <input id="messageCheckbox" data-target ="0" type="checkbox" value="Case Name" checked>
+                    <label>Case Name</label><br>
+                    <input id="messageCheckbox" data-target ="1" type="checkbox" value="Inst. Name">
+                    <label>Inst. Name</label><br>
+                    <input id="messageCheckbox" data-target ="2" type="checkbox" value="Account Name" checked>
+                    <label>Account Name</label><br>
+                    <input id="messageCheckbox" data-target ="3" type="checkbox" value="Date" checked>
+                    <label>Date</label><br>
+                    <input id="messageCheckbox" data-target ="4" type="checkbox" value="Asset Name" checked>
+                    <label>Asset Name</label><br>
+                    <input id="messageCheckbox" data-target ="5" type="checkbox" value="Asset Type">
+                    <label>Asset Type</label><br>
+                    <input id="messageCheckbox" data-target ="6" type="checkbox" value="Shares" checked>
+                    <label>Shares</label><br>
+                    <input id="messageCheckbox" data-target ="7" type="checkbox" value="FMV" checked>
+                    <label>FMV</label><br>
+                    <input id="messageCheckbox" data-target ="8" type="checkbox" value="CV">
+                    <label>CV</label><br>
+                  </div>
+                </div>
+              </div>
+            </div>          
+      </div>
+    </div>
+    <script type="text/javascript">
+       
+      $(document).ready(function () {
+
+        $(".sub-btn").click(function () {
+          $(this).next(".sub-menu").slideToggle();
+          $(this).find(".dropdown").toggleClass("rotate");
+        });
+
+        $(".menu-btn").click(function () {
+          $(".side-bar").addClass("active");
+          $(".before").css("visibility", "hidden");
+          $('.main').css("margin-left", "230px");
+        });
+        $(".close-btn").click(function () {
+          $(".side-bar").removeClass("active");
+          $(".before").css("visibility", "visible");
+          $('.main').css("margin-left", "0px");
+        });
+        $(".col-select").click(function () {
+          $(".checkb").css("display", "block");
+          $(".col-select").css("display","none");
+        });
+        $(".col-select2").click(function () {
+          $(".col-select").css("display", "block");
+          $(".checkb").css("display","none");
+        });
+
+        
+        $(".col-select3").click(function () {
+          $(".checkb2").css("display", "block");
+          $(".col-select3").css("display","none");
+        });
+        $(".col-select4").click(function () {
+          $(".col-select3").css("display", "block");
+          $(".checkb2").css("display","none");
+        });
+        $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
+      
+        var table = $('#first-table').DataTable( {
+          "paging": false,"searching": false, "info": false,
+          "columnDefs": [
+              {
+                  "targets": [ 1,5,8 ],
+                  "visible": false,
+              }
+          ],
+          "scrollX": true,
+        } );
+        
+        $('.checkboxes input[type="checkbox"]').on('change', function(e) {
+        var col = table.column($(this).attr('data-target'));
+        col.visible(!col.visible());
+        });
+
+        var table2 = $('#second-table').DataTable( {
+        "searching": false, 
+        "info": false,
+        "columnDefs": [
+            {
+                "targets": [ 1,5,8 ],
+                "visible": false,
+            }
+        ],
+        "order": [[ 0, "desc" ]],
+        "scrollY": '40vh',
+        "scrollX": true,
+        } );
+    
+        $('.checkboxes1 input[type="checkbox"]').on('change', function(e) {
+        var col = table2.column($(this).attr('data-target'));
+        col.visible(!col.visible());
+        });
+
+        $('#add-row').on( 'click', function () {
+          table2.columns( [0,1,2,3,4,5,6,7,8] ).visible( true );
+          $(".checkb2 .checkboxes").find(':checked').attr('checked', false);          
+
+          table2.row.add( [
+            '<input type="text" value="All" id="case_name" name="case_name"></input>',
+            '<input type="text" value="All" id="inst" name="inst_name"></input>',
+            '<input type="text" value="All" id="account" name="account_name"></input>',
+            '<input type="text" value="1/1/2021" id="date" name="date"></input>',
+            '<input type="text" value="All" id="asset_n" name="asset_name"></input>',
+            '<input type="text" value="All" id="asset_t" name="asset_type"></input>',
+            '<input type="text" value=1.1 id="shares" name="shares"></input>',
+            '<input type="text" value=1.1 id="fmv" name="fmv"></input>',
+            '<input type="text" value=1.1 id="cv" name="cv"></input>',
+            '<i class="fa fa-check" id="addRecord" onclick="addRecord(this)" aria-hidden="true"></i>'  
+          ]).draw(); 
+        });
+      });
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,289 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+.side-bar {
+  background-color: #a8603a;
+  width: 290px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: 0.5s;
+}
+
+.side-bar.active {
+  left: 0;
+}
+
+.side-bar .menu {
+  width: 100%;
+  margin-top: 56px;
+}
+
+.side-bar .menu .item {
+  position: relative;
+  cursor: pointer;
+}
+.main-data {
+  position: relative;
+  width: 100%;
+  color: white;
+  overflow: hidden;
+}
+.head-menu {
+  cursor: pointer;
+  color: #fff;
+  background-color: #a8603a;
+  font-size: 16px;
+  text-decoration: none;
+  display: block;
+  padding: 0px 30px;
+  line-height: 60px;
+}
+.head-menu .dropdown {
+  float: right;
+}
+.side-bar .menu .item a {
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  display: block;
+  padding: 5px 30px;
+  line-height: 60px;
+}
+
+.side-bar .menu .item a:hover {
+  background-color: #432b1f;
+  transition: 0.3s ease;
+}
+.sub-btn.active,
+.sub-item.active {
+  background-color: #432b1f !important;
+}
+.side-bar .menu .item i {
+  margin-right: 15px;
+}
+.head-menu .dropdown {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  transition: 0.3s ease;
+}
+.side-bar .menu .item a .dropdown {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  transition: 0.3s ease;
+}
+
+.side-bar .menu .item .sub-menu {
+  display: none;
+}
+.main-data .sub-menu {
+  display: none;
+}
+.main-data .sub-menu a {
+  padding-left: 80px;
+}
+.side-bar .menu .item .sub-menu a {
+  padding-left: 80px;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+.heading {
+  position: absolute;
+  color: #fff;
+  background-color: #432b1f;
+  width: 100%;
+  height: 58px;
+}
+.close-btn {
+  color: #fff;
+  cursor: pointer;
+  font-size: 21px;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-top: 18px;
+  padding-bottom: 15px;
+  float: right;
+}
+.main-head {
+  float: left;
+  font-size: 21px;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.main-head > i {
+  float: left;
+  padding-top: 2px;
+}
+.main-head p {
+  float: right;
+  margin-left: 10px;
+  font-size: 18px;
+}
+.close-btn i {
+  float: right;
+}
+.bo {
+  display: flex;
+}
+.before {
+  background-color: #a8603a;
+  height: 100vh;
+  width: 58px !important;
+  transition: 0.5s;
+}
+.menu-btn {
+  position: absolute;
+  color: #fff;
+  background-color: #432b1f;
+  font-size: 21px;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  cursor: pointer;
+}
+
+.main {
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 30px 30px 30px;
+  background-color: white;
+  flex: 1;
+  transition: 0.5s;
+}
+.first-table {
+  padding-top: 20px;
+  background-color: white;
+}
+.first {
+  float: left;
+}
+.second {
+  float: right;
+}
+table {
+  margin: 15px;
+  border-color: grey;
+}
+th {
+  padding: 10px;
+  background-color: #a8603a;
+}
+td {
+  padding: 10px;
+  color: black;
+}
+table.dataTable thead th,
+table.dataTable thead td {
+  border: none;
+}
+.col-select,
+.col-select2,
+.col-select3,
+.col-select4 {
+  padding: 2px 15px 12px 15px;
+  margin-top: 10px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #a8603a;
+  color: white;
+}
+.dataTables_length {
+  display: none;
+}
+input[type="text"],
+input[type="number"] {
+  border: none;
+  width: 80px;
+  background-color: transparent;
+}
+.submit-query {
+  padding: 12px 15px 12px 15px;
+  margin-top: 10px;
+  border: none;
+  font-size: 20px;
+  background-color: #a8603a;
+  color: white;
+  float: right;
+}
+.checkb,
+.checkb2 {
+  width: 200px;
+  height: 400px;
+  background-color: #a8603a;
+  color: white;
+  display: none;
+  text-align: center;
+}
+.checkb button,
+.checkb2 button {
+  margin-bottom: 20px;
+}
+.checkboxes,
+.checkboxes1 {
+  text-align: left;
+  margin-left: 30px;
+}
+#first-table {
+  width: 800px !important;
+}
+#second-table {
+  width: 800px !important;
+}
+
+div.dataTables_wrapper {
+  width: 800px;
+  margin: 0 auto;
+}
+.dataTables_scrollBody::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.dataTables_scrollBody::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
+}
+
+.dataTables_scrollBody::-webkit-scrollbar-thumb {
+  background-color: #777;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 1140px) {
+  #first-table {
+    width: 500px !important;
+  }
+  #second-table {
+    width: 500px !important;
+  }
+
+  div.dataTables_wrapper {
+    width: 500px;
+    margin: 0 auto;
+  }
+}

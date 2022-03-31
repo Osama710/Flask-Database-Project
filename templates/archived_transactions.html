@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Archived Financial Transactions</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      charset="utf-8"
+    ></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static',filename='java/main.js') }}"></script>
+  </head>
+  <body>
+    <div class="bo">
+      <div class="before">
+        <div class="menu-btn">
+          <i class="far fa-arrow-alt-circle-right"></i>
+        </div>
+      </div>
+      <div class="side-bar">
+        <div class="heading">
+          <div class="main-head">
+            <i class="fas fa-globe"></i>
+            <p>Site</p>
+          </div>
+          <div class="close-btn">
+            <i class="far fa-arrow-alt-circle-left"></i>
+          </div>
+        </div>
+        <div class="menu">
+          <div class="item">
+            <a class="sub-btn"
+              ><i class="far fa-file-alt"></i>Data Entries<i
+                class="fas fa-angle-down dropdown"
+              ></i
+            ></a>
+            <div class="sub-menu">
+              <a href="{{ url_for('holding') }}" class="sub-item">Holdings</a>
+              <a href="{{ url_for('transactions') }}" class="sub-item">Transactions</a>
+            </div>
+          </div>
+          <div class="item">
+            <a class="sub-btn active" href="#"
+              ><i class="fas fa-wrench"></i>Tools<i
+                class="fas fa-angle-down dropdown"
+              ></i
+            ></a>
+            <div class="sub-menu">
+              <a href="{{ url_for('archivedholdings') }}" class="sub-item">Archived Holdings</a>
+              <a href="{{ url_for('archivedtransactions') }}" class="sub-item active">Archived Transactions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="main-data">
+          <a class="head-menu sub-btn"
+            >Query Archived Financial Transaction Database<i
+              class="fas fa-angle-down dropdown"
+            ></i
+          ></a>
+          <div class="sub-menu first-table">
+            <div class="first">
+              <form action="" method="POST">
+                <table border="1" id="first-table" class="order-column">
+                <thead>
+                  <tr>
+                    <th>Case Name</th>
+                    <th>Inst. Name</th>
+                    <th>Account Name</th>
+                    <th>Date Range</th>
+                    <th>Payee/Payor</th>
+                    <th>Check No.</th>
+                    <th>Category</th>
+                    <th>Memo</th>
+                    <th>Amount</th>
+                    <th>Asset Name</th>
+                    <th>Shares</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td><input type="text" value="All" id="case_name" name="case_name"></input></td>
+                      <td><input type="text" value="All" id="inst_name" name="inst_name"></input></td>
+                      <td><input type="text" value="All" id="account_name" name="account_name"></input></td>
+                      <td><input type="text" value="01/01/2021-31/01/2021" id="date" name="date"></input></td>
+                      <td><input type="text" value="All" id="payee" name="payee"></input></td>
+                      <td><input type="text" value="All" id="check_no" name="check_no"></input></td>
+                      <td><input type="text" value="All" id="category" name="category"></input></td>
+                      <td><input type="text" value="All" id="memo" name="memo"></input></td>
+                      <td><input type="text" value="All" id="amount" name="amount"></input></td>
+                      <td><input type="text" value="All" id="asset_name" name="asset_name"></input></td>
+                      <td><input type="text" value="All" id="shares" name="shares"></input></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button class="submit-query" type="submit">Submit Query</button>
+              </form>
+            </div>
+            <div class="second">
+              <button class="col-select">...</button>
+              <div class="checkb">
+                <button class="col-select2">...</button><br>
+                <div class="checkboxes">
+                  <input id="messageCheckbox" data-target ="0" type="checkbox" value="Case Name" checked>
+                  <label>Case Name</label><br>
+                  <input id="messageCheckbox" data-target ="1" type="checkbox" value="Inst. Name">
+                  <label>Inst. Name</label><br>
+                  <input id="messageCheckbox" data-target ="2" type="checkbox" value="Account Name" checked>
+                  <label>Account Name</label><br>
+                  <input id="messageCheckbox" data-target ="3" type="checkbox" value="Date" checked>
+                  <label>Date</label><br>
+                  <input id="messageCheckbox" data-target ="4" type="checkbox" value="Payee" checked>
+                  <label>Payee/Payor</label><br>
+                  <input id="messageCheckbox" data-target ="5" type="checkbox" value="Check No.">
+                  <label>Check No.</label><br>
+                  <input id="messageCheckbox" data-target ="6" type="checkbox" value="Category" checked>
+                  <label>Category</label><br>
+                  <input id="messageCheckbox" data-target ="7" type="checkbox" value="Memo">
+                  <label>Memo</label><br>
+                  <input id="messageCheckbox" data-target ="8" type="checkbox" value="Amount" checked>
+                  <label>Amount</label><br>
+                  <input id="messageCheckbox" data-target ="9" type="checkbox" value="Asset Name">
+                  <label>Asset Name</label><br>
+                  <input id="messageCheckbox" data-target ="9" type="checkbox" vvalue="Shares">
+                  <label>Shares</label><br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 main-data">
+          <a class="head-menu sub-btn"
+            >Archived Financial Transaction Query<i
+              class="fas fa-angle-down dropdown"
+            ></i
+          ></a>
+          <div class="sub-menu first-table">
+            <div class="first">
+              <table border="1" id="second-table" class="order-column display nowrap">
+              <thead>
+                <tr>
+                  <th>Case Name</th>
+                  <th>Inst. Name</th>
+                  <th>Account Name</th>
+                  <th>Date Range</th>
+                  <th>Payee/Payor</th>
+                  <th>Check No.</th>
+                  <th>Category</th>
+                  <th>Memo</th>
+                  <th>Amount</th>
+                  <th>Asset Name</th>
+                  <th>Shares</th>
+                  <th>Archived?</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for data in holding_data %}
+                <tr>
+                  <td>{{data.case_name}}</td>
+                  <td>{{data.inst_name}}</td>
+                  <td>{{data.account_name}}</td>
+                  <td>{{data.date}}</td>
+                  <td>{{data.payee}}</td>
+                  <td>{{data.check_no}}</td>
+                  <td>{{data.category}}</td>
+                  <td>{{data.memo}}</td>
+                  <td>{{data.amount}}</td>
+                  <td>{{data.asset_name}}</td>
+                  <td>{{data.shares}}</td>
+                  <td onclick="restore1(this)"><i class="fa fa-upload" aria-hidden="true"></i></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              </table>
+            </div>
+            <div class="second">
+              <button class="col-select3">...</button>
+              <div class="checkb2">
+                <button class="col-select4">...</button><br>
+                <div class="checkboxes1">
+                  <input id="messageCheckbox" data-target ="0" type="checkbox" value="Case Name" checked>
+                  <label>Case Name</label><br>
+                  <input id="messageCheckbox" data-target ="1" type="checkbox" value="Inst. Name">
+                  <label>Inst. Name</label><br>
+                  <input id="messageCheckbox" data-target ="2" type="checkbox" value="Account Name" checked>
+                  <label>Account Name</label><br>
+                  <input id="messageCheckbox" data-target ="3" type="checkbox" value="Date" checked>
+                  <label>Date</label><br>
+                  <input id="messageCheckbox" data-target ="4" type="checkbox" value="Payee" checked>
+                  <label>Payee/Payor</label><br>
+                  <input id="messageCheckbox" data-target ="5" type="checkbox" value="Check No.">
+                  <label>Check No.</label><br>
+                  <input id="messageCheckbox" data-target ="6" type="checkbox" value="Category" checked>
+                  <label>Category</label><br>
+                  <input id="messageCheckbox" data-target ="7" type="checkbox" value="Memo">
+                  <label>Memo</label><br>
+                  <input id="messageCheckbox" data-target ="8" type="checkbox" value="Amount" checked>
+                  <label>Amount</label><br>
+                  <input id="messageCheckbox" data-target ="9" type="checkbox" value="Asset Name">
+                  <label>Asset Name</label><br>
+                  <input id="messageCheckbox" data-target ="9" type="checkbox" vvalue="Shares">
+                  <label>Shares</label><br>
+                </div>
+              </div>
+            </div>            
+          </div>          
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+       
+      $(document).ready(function () {
+
+        $(".sub-btn").click(function () {
+          $(this).next(".sub-menu").slideToggle();
+          $(this).find(".dropdown").toggleClass("rotate");
+        });
+
+        $(".menu-btn").click(function () {
+          $(".side-bar").addClass("active");
+          $(".before").css("visibility", "hidden");
+          $('.main').css("margin-left", "230px");
+        });
+        $(".close-btn").click(function () {
+          $(".side-bar").removeClass("active");
+          $(".before").css("visibility", "visible");
+          $('.main').css("margin-left", "0px");
+        });
+        $(".col-select").click(function () {
+          $(".checkb").css("display", "block");
+          $(".col-select").css("display","none");
+        });
+        $(".col-select2").click(function () {
+          $(".col-select").css("display", "block");
+          $(".checkb").css("display","none");
+        });
+
+        
+        $(".col-select3").click(function () {
+          $(".checkb2").css("display", "block");
+          $(".col-select3").css("display","none");
+        });
+        $(".col-select4").click(function () {
+          $(".col-select3").css("display", "block");
+          $(".checkb2").css("display","none");
+        });
+        var table = $('#first-table').DataTable( {
+        "paging": false,"searching": false, "info": false,
+        "columnDefs": [
+            {
+                "targets": [ 1,5,7,9,10 ],
+                "visible": false,
+            }
+        ],
+        "scrollX": true
+        } );
+    
+        $('.checkboxes input[type="checkbox"]').on('change', function(e) {
+        var col = table.column($(this).attr('data-target'));
+        col.visible(!col.visible());
+        });
+
+        var table2 = $('#second-table').DataTable( {
+          "searching": false, 
+          "info": false,
+          "columnDefs": [
+              {
+                "targets": [ 1,5,7,9,10 ],
+                  "visible": false,
+              }
+          ],
+          "order": [[ 0, "desc" ]],
+          "scrollY": '40vh',
+          "scrollX": true
+        } );
+    
+        $('.checkboxes1 input[type="checkbox"]').on('change', function(e) {
+        var col = table2.column($(this).attr('data-target'));
+        col.visible(!col.visible());
+        });
+      });
+      
+    </script>
+  </body>
+</html>
